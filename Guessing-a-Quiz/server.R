@@ -80,7 +80,7 @@ shinyServer(function(input, output, session) {
     }else if (max(scores) > 10){
       par(mar = c(5, 4, 2, 4))
       pic <- barplot(scores / sum(scores), family = "mono", col = '#DDEAF6',
-                     xlab = 'Grades', ylab = 'Relative Frequence',
+                     xlab = 'Grades', ylab = 'Relative Frequency',
                      cex.lab = 1.5,
                      yaxt = 'n', ylim = c(0, 0.5))
       axis(side = 2, las = 2, mgp = c(3, 0.75, 0), family = "mono")
@@ -93,7 +93,7 @@ shinyServer(function(input, output, session) {
     else {
       plot.new()
     }
-    title(main = "Distibution of Quiz Grades", cex.main = 2, family = "mono")
+    title(main = "Distribution of Quiz Grades", cex.main = 2, family = "mono")
   })
   
   
