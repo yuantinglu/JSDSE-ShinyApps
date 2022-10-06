@@ -54,7 +54,7 @@ shinyServer(function(input, output, session) {
     }else if (max(tab) > 15) {
         par(mar = c(5, 4, 2, 4))
         pic <- barplot(tab / sum(tab), family = "mono", col = '#DDEAF6',
-              xlab = 'Number of Correct Matches', ylab = 'Relative Frequence',
+              xlab = 'Number of Correct Matches', ylab = 'Relative Frequency',
               yaxt = 'n', ylim = c(0, 0.5))
         axis(side = 2, las = 2, mgp = c(3, 0.75, 0), family = "mono")
         par(new = T)
@@ -67,7 +67,7 @@ shinyServer(function(input, output, session) {
     }else {
       plot.new()
     }
-    title(main = HTML("The Distibution of \nthe Number of Correct Matches"), cex.main = 1, family = "mono")
+    title(main = HTML("The Distribution of \nthe Number of Correct Matches"), cex.main = 1, family = "mono")
   })
   
   
@@ -89,7 +89,7 @@ shinyServer(function(input, output, session) {
     }else if (max(s) > 15) {
       par(mar = c(5, 4, 3, 4))
       barplot(tab.y / sum(tab.y), family = "mono", col = '#DDEAF6',
-              xlab = 'Envelopes', ylab = 'Relative Frequence',
+              xlab = 'Envelopes', ylab = 'Relative Frequency',
               yaxt = 'n', ylim = c(0, 0.5), 
               names.arg = c('1st', '2nd', '3rd', '4th', '5th', '6th', '7th'))
       axis(side = 2, las = 2, mgp = c(3, 0.75, 0), family = "mono")
