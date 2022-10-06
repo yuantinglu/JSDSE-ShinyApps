@@ -66,7 +66,7 @@ shinyUI(fluidPage(
   <li>Each letter has a unique envelope that matches with it.</li>
   <li>Vertically drag and drop the letters to shuffle them.</li>
   <li>Click the submit button to compare your rearrangement to an answer key,<br> 
-  so that you know how many letter(s) have been correctly enveloped.</li> 
+  so that you know how many letter(s) have been correctly placed.</li> 
   <li>Each new round has a new answer key.</li></ul>'),
   
   
