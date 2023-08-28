@@ -72,6 +72,7 @@ shinyServer(function(input, output, session) {
   ####################################################
   output$graph <- renderPlot({
     scores <- userdata()
+    n <- length(scores)
     freq <- table(scores)
     if (length(scores) > 0 & max(freq) <= 10) {
       stripchart(scores, method = "stack", offset = .5, at = .15, pch = 20, 
@@ -80,15 +81,16 @@ shinyServer(function(input, output, session) {
       axis(side = 1, at = 0:10)
     }else if (length(scores) > 0 & max(freq) > 10){
       par(mar = c(5, 4, 2, 4))
-      pic <- barplot(scores / sum(scores), family = "mono", col = '#DDEAF6',
+      ymaxx <- ceiling(max(freq / n)*10)/10
+      pic <- barplot(freq / n, family = "mono", col = '#DDEAF6',
                      xlab = 'Grades', ylab = 'Relative Frequence',
                      cex.lab = 1.5,
-                     yaxt = 'n', ylim = c(0, 0.5))
+                     yaxt = 'n', ylim = c(0, ymaxx))
       axis(side = 2, las = 2, mgp = c(3, 0.75, 0), family = "mono")
       par(new = T)
-      barplot(scores, family = "mono", col = '#DDEAF6',
-              yaxt = 'n', ylim = c(0, 0.5 * sum(scores)))
-      axis(side = 4, las = 2, mgp = c(3,0.75, 0), family = "mono", at = scores, cex.axis = 0.8)
+      barplot(freq, family = "mono", col = '#DDEAF6',
+              yaxt = 'n', ylim = c(0, ymaxx * n))
+      axis(side = 4, las = 2, mgp = c(3,0.75, 0), family = "mono", at = freq, cex.axis = 0.8)
       mtext("Frequency", side = 4, line = 2.5, las = 3, family = "mono", cex = 1.5)
     }
     else {
