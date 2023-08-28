@@ -14,8 +14,8 @@ shinyServer(function(input, output, session) {
     score <- 0 
     
     # Set up the answer keys
-    key <- c("F", "T", "F", "F", "F", 
-             "T", "F", "T", "T", "T")
+    key <- c("F", "F", "F", "T", "T", 
+             "T", "F", "T", "T", "F")
     
     # Add up scores
     if (input$q1 == key[1]) {score <- score + 1}
@@ -71,16 +71,17 @@ shinyServer(function(input, output, session) {
   ## Plot a barplot if max frequency is larger than 10
   ####################################################
   output$graph <- renderPlot({
-    scores <- table(userdata())
-    if (max(scores) <= 10) {
+    scores <- userdata()
+    freq <- table(scores)
+    if (length(scores) > 0 & max(freq) <= 10) {
       stripchart(scores, method = "stack", offset = .5, at = .15, pch = 20, 
                xlim = c(0,10), xlab = "Grades", cex.lab = 1.5, axes = FALSE,
                family = "mono")
       axis(side = 1, at = 0:10)
-    }else if (max(scores) > 10){
+    }else if (length(scores) > 0 & max(freq) > 10){
       par(mar = c(5, 4, 2, 4))
       pic <- barplot(scores / sum(scores), family = "mono", col = '#DDEAF6',
-                     xlab = 'Grades', ylab = 'Relative Frequency',
+                     xlab = 'Grades', ylab = 'Relative Frequence',
                      cex.lab = 1.5,
                      yaxt = 'n', ylim = c(0, 0.5))
       axis(side = 2, las = 2, mgp = c(3, 0.75, 0), family = "mono")
@@ -93,7 +94,7 @@ shinyServer(function(input, output, session) {
     else {
       plot.new()
     }
-    title(main = "Distribution of Quiz Grades", cex.main = 2, family = "mono")
+    title(main = "Distibution of Quiz Grades", cex.main = 2, family = "mono")
   })
   
   
